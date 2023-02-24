@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tournoi de Football</title>
+  <style>
+    .match {
+      margin: 20px 0;
+    }
+    .team-name {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tournoi de Football</h1>
+  <form>
+    <h2>Entrez les noms des 10 équipes :</h2>
+    <input type="text" id="team1" placeholder="Équipe 1">
+    <input type="text" id="team2" placeholder="Équipe 2">
+    <input type="text" id="team3" placeholder="Équipe 3">
+    <input type="text" id="team4" placeholder="Équipe 4">
+    <input type="text" id="team5" placeholder="Équipe 5">
+    <input type="text" id="team6" placeholder="Équipe 6">
+    <input type="text" id="team7" placeholder="Équipe 7">
+    <input type="text" id="team8" placeholder="Équipe 8">
+    <input type="text" id="team9" placeholder="Équipe 9">
+    <input type="text" id="team10" placeholder="Équipe 10">
+  </form>
+  <button id="start-tournament-btn">Lancer le tournoi</button>
+  <div id="match-results"></div>
+  <script>
+    document.getElementById("start-tournament-btn").addEventListener("click", function() {
+      var teams = [];
+      teams.push(document.getElementById("team1").value);
+      teams.push(document.getElementById("team2").value);
+      teams.push(document.getElementById("team3").value);
+      teams.push(document.getElementById("team4").value);
+      teams.push(document.getElementById("team5").value);
+      teams.push(document.getElementById("team6").value);
+      teams.push(document.getElementById("team7").value);
+      teams.push(document.getElementById("team8").value);
+      teams.push(document.getElementById("team9").value);
+      teams.push(document.getElementById("team10").value);
+
+      // Phase de poule
+      var poolResults = [];
+      for (var i = 0; i < teams.length; i++) {
+        for (var j = i + 1; j < teams.length; j++) {
+          var result = prompt(teams[i] + " vs " + teams[j] + " : Entrez le résultat sous la forme 'x-y'");
+          poolResults.push({
+            team1: teams[i],
+            team2: teams[j],
+            result: result
+          });
+        }
+      }
+
+     
+      // Afficher les résultats de la phase de poule
+      var resultsContainer = document.getElementById("match-results");
+      resultsContainer.innerHTML = "<h2>Résultats de la phase de poule</h2>";
+      for (var k = 0; k < poolResults.length; k++) {
+        var match = poolResults[k];
+        resultsContainer.innerHTML += "<div class='match'>" + match.team1 + " vs " + match.team2 + " : " + match.result + "</div>";
+      }
+
+      // Phase finale
+      // ...
+    });
+  </script>
+</body>
+</html>
